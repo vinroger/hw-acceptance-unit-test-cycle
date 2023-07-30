@@ -1,0 +1,36 @@
+<h2>Movies by the Same Director</h2>
+
+<% if @movies.nil? %>
+  <h3>No similar movies found.</h3>
+<% elsif @movies.empty? %>
+  <h3>This director has no other movies.</h3>
+<% else %>
+  <table class="table table-striped col-md-12" id="movies">
+    <thead>
+      <tr>
+        <th>Movie Title</th>
+        <th>Rating</th>
+        <th>Release Date</th>
+        <th>More Info</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @movies.each do |movie| %>
+        <tr>
+          <td>
+            <%= movie.title %>
+          </td>
+          <td>
+            <%= movie.rating %>
+          </td>
+          <td>
+            <%= movie.release_date %>
+          </td>
+          <td>
+            <%= link_to "More about #{movie.title}", movie_path(movie) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
